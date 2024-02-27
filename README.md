@@ -29,16 +29,28 @@
           private Integer winningAmount; 
 
           }
-
-public static ParticipantDTO prepareDTO(Participant participant)
-
-ParticipantDTO participantDTO=new ParticipantDTO(); participantDTO.setParticipantId(participant.getParticipantId()); participantDTO.setName(participant.getName()); participantDTO.setAge(participant.getAge()); participantDTO, setMailId(participant.getMailId()); participantDTO.setContactNo(participant.getContactNo()); participantDTO.setCouponNumber(participant.getCouponNumber()); participantDTO.setWinningAmount(participant.getWinningAmount()); return participantDTO;
-
-}
-
-public static Participant prepareEntity (ParticipantDTO participantDTO){ Participant participant =new Participant(); participant.setName(participantDTO.getName()); participant.setAge(participantDTO.getAge()); participant.setMailId(participantDTO.getMailId()); participant.setContactNo(participantDTO.getContactNo()); participant.setCouponNumber(participantDTO.getCouponNumber()); participant.setWinningAmount(participantDTO.getWinningAmount()); return participant;
-
-}
+          public static ParticipantDTO prepareDTO(Participant participant)
+          {
+              ParticipantDTO participantDTO=new ParticipantDTO();    
+              participantDTO.setParticipantId(participant.getParticipantId()); 
+              participantDTO.setName(participant.getName()); 
+              participantDTO.setAge(participant.getAge());
+              participantDTO.setMailId(participant.getMailId());
+              participantDTO.setContactNo(participant.getContactNo()); 
+              participantDTO.setCouponNumber(participant.getCouponNumber()); 
+              participantDTO.setWinningAmount(participant.getWinningAmount()); 
+              return participantDTO;
+          }
+          public static Participant prepareEntity (ParticipantDTO participantDTO){ 
+                    Participant participant =new Participant(); 
+                    participant.setName(participantDTO.getName());
+                    participant.setAge(participantDTO.getAge()); 
+                    participant.setMailId(participantDTO.getMailId()); 
+                    participant.setContactNo(participantDTO.getContactNo()); 
+                    participant.setCouponNumber(participantDTO.getCouponNumber()); 
+                    participant.setWinningAmount(participantDTO.getWinningAmount()); 
+                    return participant;
+          }
 </code></p>
 
 **ParticipantValidator.java**
@@ -55,7 +67,13 @@ public static Boolean isValidAge(Integer age)
            return true;
 }
 </code></p>
-          
-public interface ParticipantRepository extends CrudRepository<Participant, Integer> { Participant findByCoupon Number (String coupon Nuumber);
-
+                     
+ **ParticipantRepository**  
+ 
+<p><code>public interface ParticipantRepository extends CrudRepository<*Participant, Integer*> { 
+          Participant findByCouponNumber (String coupon Number);
 }
+</code></P>
+
+
+**TableScript.sql**
