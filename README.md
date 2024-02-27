@@ -56,3 +56,6 @@ public static Boolean isValidAge(Integer age)
 }
 </code></p>
           
+public interface ParticipantRepository extends CrudRepository<Participant, Integer> { Participant findByCoupon Number (String coupon Nuumber);
+
+}
