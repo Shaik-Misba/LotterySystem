@@ -1,3 +1,45 @@
+package com.infy.lotterysystem.validator;
+
+import com.infy.lotterysystem.dto. ParticipantDTO;
+
+public class ParticipantValidator {
+
+public ParticipantValidator() {
+
+super();
+
+}
+
+// TODO Auto-generated constructor stub public static void validateParticipant (ParticipantDTO participantDTO) throws LotteryBookingException if(isValidAge(participantDTO.getAge())==false)
+
+{
+
+{
+
+throw new LotteryBookingException("ParticipantValidator.INVALID_AGE");
+
+}
+
+}
+
+public static Boolean isValidAge(Integer age)
+
+{
+
+if(age<18)
+
+{
+
+return false;
+
+}
+
+return true;
+
+}
+
+}
+
 **Participant.java**
 <p><code> <b>@Entity
           @Table(name="participant")</b>
