@@ -27,6 +27,18 @@
           private String couponfNumber; 
           @NotNull(message"(lottery.winningamount.absent}")
           private Integer winningAmount; 
+
+          }
+
+public static ParticipantDTO prepareDTO(Participant participant)
+
+ParticipantDTO participantDTO=new ParticipantDTO(); participantDTO.setParticipantId(participant.getParticipantId()); participantDTO.setName(participant.getName()); participantDTO.setAge(participant.getAge()); participantDTO, setMailId(participant.getMailId()); participantDTO.setContactNo(participant.getContactNo()); participantDTO.setCouponNumber(participant.getCouponNumber()); participantDTO.setWinningAmount(participant.getWinningAmount()); return participantDTO;
+
+}
+
+public static Participant prepareEntity (ParticipantDTO participantDTO){ Participant participant =new Participant(); participant.setName(participantDTO.getName()); participant.setAge(participantDTO.getAge()); participant.setMailId(participantDTO.getMailId()); participant.setContactNo(participantDTO.getContactNo()); participant.setCouponNumber(participantDTO.getCouponNumber()); participant.setWinningAmount(participantDTO.getWinningAmount()); return participant;
+
+}
 </code></p>
 
 **ParticipantValidator.java**
