@@ -54,18 +54,20 @@
 </code></p>
 
 **ParticipantValidator.java**
-<p><code>public static void validateParticipant (ParticipantDTO participantDTO) throws LotteryBookingException {                       if(isValidAge(participantDTO.getAge())==false)
-          {
-                  throw new LotteryBookingException("ParticipantValidator.INVALID_AGE");
+<p><code>
+          public static void validateParticipant (ParticipantDTO participantDTO) throws LotteryBookingException {                                                   
+                    if(isValidAge(participantDTO.getAge())==false)
+                    {
+                            throw new LotteryBookingException("ParticipantValidator.INVALID_AGE");
+                    }
           }
-}
-public static Boolean isValidAge(Integer age) 
-{
-           if(age<18){
-                   return false;
-           }
-           return true;
-}
+          public static Boolean isValidAge(Integer age) 
+          {
+                     if(age<18){
+                             return false;
+                     }
+                     return true;
+          }
 </code></p>
                      
  **ParticipantRepository**  
@@ -75,5 +77,57 @@ public static Boolean isValidAge(Integer age)
 }
 </code></P>
 
+**ParticipantServiceImpl.java**
+<p><code>
+          <b>@Service(value="participantService")
+          @Transactional</b>
+          public class PraticipantServiceImpl implements ParticipantSerive{
+                   <b> @Autowired</b>
+                    private ParticipantRepository participantRepository;
+          
+                    @Override
+                    public ParticipantDTO addParticipant(-----------){
+                              ParticipantValidator.validateParticipant(participantDTO);
+                              Participant participant=ParticipantDTO.prepareEntity(participantDTO);
+                              participat=participantRepository.save(participant);
+                              participantDTO.setParticipantId(participant.getParticipantId());
+                              return participantDTO;
+                    }
 
-**TableScript.sql**
+                    @Override
+                    public ParticipantDTO getLotteryWinner(-----------){
+                              Participant participant=ParticipantRepository.findByCouponNumber(couponNumber);
+                              if(participant==null)
+                              {
+                                        throws new LotteryBookingException("ParticipantService.NO_PARTICIPANT_AVAILABLE");
+                              }
+                              ParticipantDTO participantDTO = PqrticipantDTO.prepareDTO(Participant); 
+                              return participantDTO;
+                    }
+          }
+</code></p>
+
+**ExceptionControllerAdvice.java**
+<p><code>
+          @RestControllerAdvice
+          public class ExceptionControllerAdvice{
+                    @Autowired
+                    private Environment environment;
+
+                    @ExceptionHandler(LotteryBookingException.class)
+                    public ResponseEntity<*ErrorInfor> lotteryBookingExceptionHandler(--------){
+                    }
+                    
+                    @ExceptionHandler(Exception.class)
+                    public ResponseEntity<*ErrorInfo> generalExceptionHandler(Exception exception)(
+                    }
+
+                    @ExceptionHandler({MethodArgumentNotValidException.class, ConstraintViolationException.class})
+                    public ResponseEntity<*ErrorInfo> validatorExceptionhandler(Exception exception){
+                    }                    
+</code></p>
+
+**ParticipatAPI.java**
+<p><code>
+          
+</code></p>
