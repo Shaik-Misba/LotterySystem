@@ -126,34 +126,27 @@
                     public ResponseEntity<*ErrorInfo> validatorExceptionhandler(Exception exception){
                     }                    
 </code></p>
-RequestMapping(value = "api")
 
-@Validated
-
-public class ParticipantAPI {
-
-@Autowired
-
-private ParticipantService participantService;
-
-@GetMapping(value = "participant/{couponNumber)")
-
-public ResponseEntity<ParticipantDTO> getLotteryWinner(@PathVariable @Pattern (regexp = "[A-Z]{3}[0-9]{3}", message = "{lottery.couponnumber.invalid}") @Valid String couponNumber) throws LotteryBookingException
-
-{
-
-ParticipantDTO dto participantService.getLotteryWinner(couponNumber); return new Response Entity<ParticipantDTO>(dto, HttpStatus.OK);
-
-}
-
-@PostMapping(value = "participants", consumes = "application/json")
-
-public ResponseEntity<ParticipantDTO> addParticipant (@RequestBody @Valid ParticipantDTO participantDTO) throws LotteryBookingException{ ParticipantDTO participantDTO2= participantService.addParticipant (participantDTO);
-
-return new Response Entity<ParticipantDTO>(participantDTO, HttpStatus.CREATED);
-
-}
 **ParticipatAPI.java**
 <p><code>
+          <b>@RestController
+          @RequestMapping(value = "api")
+          @Validated</b>
+          public class ParticipantAPI {
+                   <b> @Autowired</b>
+                    private ParticipantService participantService;
           
+                    @GetMapping(value = "participant/{couponNumber)")
+                    public ResponseEntity<ParticipantDTO> getLotteryWinner(@PathVariable @Pattern (regexp = "[A-Z]{3}[0-9]{3}", message = "{lottery.couponnumber.invalid}") @Valid String couponNumber) throws LotteryBookingException
+                    {
+                              ParticipantDTO dto participantService.getLotteryWinner(couponNumber);
+                              return new Response Entity<ParticipantDTO>(dto, HttpStatus.OK);
+                    }
+                    
+                    @PostMapping(value = "participants", consumes = "application/json")
+                    public ResponseEntity<ParticipantDTO> addParticipant (@RequestBody @Valid ParticipantDTO participantDTO) throws LotteryBookingException{ 
+                              ParticipantDTO participantDTO2= participantService.addParticipant (participantDTO);
+                              return new Response Entity<ParticipantDTO>(participantDTO, HttpStatus.CREATED);
+                    }
+          }
 </code></p>
